@@ -1,0 +1,33 @@
+artifacts = ["/app/report.json"]
+
+[task]
+name = "dynamo/log-report"
+description = "Parse an access log and write a JSON traffic summary."
+
+[metadata]
+category = "programming"
+subcategory = "data_processing"
+model_tested = "GPT-5.4"
+agent_tested = "Terminus-2"
+
+task_objective = ["implement"]
+artifact_type = ["text_or_log_file"]
+expert_time_estimate_hours = 0.3
+difficulty_explanation = "The task requires parsing access-log lines, extracting client IPs and request paths, and computing multiple summary values with consistent aggregation semantics. The original authoring was broken because the task could pass without proving those values were correct."
+solution_explanation = "The reference solution reads the access log, skips blank lines, counts total entries, counts distinct first-field client IP addresses, extracts request paths from quoted HTTP request strings, identifies the most frequent path, and writes the JSON report to /app/report.json."
+verification_explanation = "The verifier parses /app/report.json, checks the exact schema and value types, recomputes the expected total request count, unique IP count, and top path from /app/access.log, and rejects missing, empty, malformed, or incorrect reports."
+
+[verifier]
+timeout_sec = 120.0
+
+[agent]
+timeout_sec = 120.0
+
+[environment]
+build_timeout_sec = 600.0
+cpus = 1
+memory_mb = 2048
+storage_mb = 10240
+gpus = 0
+allow_internet = true
+mcp_servers = []

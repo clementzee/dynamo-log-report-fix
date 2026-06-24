@@ -1,0 +1,66 @@
+{
+    "schema_version": 1,
+    "created_at": "2026-06-24T01:19:19.055555Z",
+    "harbor": {
+        "version": "0.15.0",
+        "is_editable": false
+    },
+    "invocation": [
+        "C:\\Users\\cleme\\.local\\bin\\harbor",
+        "run",
+        "-p",
+        ".",
+        "--agent",
+        "nop"
+    ],
+    "n_concurrent_trials": 4,
+    "retry": {
+        "max_retries": 0,
+        "exclude_exceptions": [
+            "RewardFileNotFoundError",
+            "VerifierOutputParseError",
+            "AgentTimeoutError",
+            "RewardFileEmptyError",
+            "VerifierTimeoutError"
+        ],
+        "wait_multiplier": 1.0,
+        "min_wait_sec": 1.0,
+        "max_wait_sec": 60.0
+    },
+    "trials": [
+        {
+            "task": {
+                "name": "log-report",
+                "type": "local",
+                "digest": "sha256:c305ae45e2b7a59f6ee1b8c4ea9fe1e393858f19553bda6226714d9999c70323",
+                "source": "dynamo-practice",
+                "path": "log-report"
+            },
+            "timeout_multiplier": 1.0,
+            "agent": {
+                "name": "nop",
+                "skills": [],
+                "extra_allowed_hosts": [],
+                "kwargs": {},
+                "env": {},
+                "mcp_servers": []
+            },
+            "skills": [],
+            "environment": {
+                "type": "docker",
+                "force_build": false,
+                "delete": true,
+                "cpu_enforcement_policy": "auto",
+                "memory_enforcement_policy": "auto",
+                "extra_docker_compose": [],
+                "env": {},
+                "kwargs": {},
+                "extra_allowed_hosts": []
+            },
+            "verifier": {
+                "env": {},
+                "disable": false
+            }
+        }
+    ]
+}
